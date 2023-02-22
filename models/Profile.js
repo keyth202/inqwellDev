@@ -111,8 +111,15 @@ const ProfileSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
-  }
-   
+  },
+  score:{
+    totalPoints:{
+      type: Number
+    },
+    dailyPoints:{
+      type: Number
+    }
+  }   
 });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);
