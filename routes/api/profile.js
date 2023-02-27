@@ -6,6 +6,7 @@ const {body, validationResult} = require('express-validator');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Friend = require('../../models/Friend');
 
 //@route    Get API/profile/me
 //@desc     get current user profile
@@ -306,5 +307,7 @@ router.delete('/education/:edu_id', auth, async (req,res)=>{
         res.status(500).send("Server Error");
     }
 });
+
+// To Do Add Friends route
 
 module.exports = router;
