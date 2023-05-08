@@ -36,7 +36,7 @@ router.post('/',
     if(!errors.isEmpty()){
         return res.status(400).json({errors:errors.array()});
     }
-    console.log(req.body);
+    console.log(req.body.email);
 
     const { email, password} = req.body;
 

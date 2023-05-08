@@ -1,7 +1,14 @@
 import { Fragment, useState } from "react";
 import React  from 'react';
+import {connect} from "react-redux";
+import { Link, Navigate } from "react-router-dom";
+import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
+import PropTypes from 'prop-types';
 
-const Register = () => {
+// import axios from 'axios';
+
+const Register = ({setAlert, register, isAuthenticated}) => {
 
     const [formData, setFormData] =useState({
         name:'',
@@ -12,15 +19,22 @@ const Register = () => {
 
     const {name, email, password, password2} = formData;
     const onChange = e => setFormData({...formData,[e.target.name]:e.target.value });
-
-    const onSubmit = e => {
+    // example of how to make a request and hit the DB
+    const onSubmit = async e => {
         e.preventDefault(); 
         if(password !== password2) {
-           console.log('Passwords do not match');
+           setAlert('Passwords do not match', 'danger', 6000);
         }else{
-            console.log(formData);
+            console.log('Registration success');
+            setAlert('Registration Success', 'success', 6000);
+            register({name, email, password});
+
         }
 
+    }
+     // redirect if logged in 
+     if(isAuthenticated){
+      return <Navigate to="/dashboard" />
     }
   return (
     <Fragment >
@@ -64,11 +78,23 @@ const Register = () => {
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
       <p className="my-1">
-        Already have an account? <a href="login.html">Sign In</a>
+        Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </section>
     </Fragment>
   )
 }
+Register.propTypes = {
+  setAlert:PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+}
 
-export default Register
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(
+  mapStateToProps,
+  {setAlert, register}
+  )(Register);

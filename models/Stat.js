@@ -18,6 +18,20 @@ const StatSchema = new Schema({
             
         }
     ],
+    workout:[       
+        {
+            name: {
+            type: String,
+            },
+            reps: {
+                type: Number,
+            },
+            date : {
+                type: Date,
+                default: Date.now
+            }
+        }
+    ],
     calories:[
         {
             amount: {
@@ -63,4 +77,4 @@ const StatSchema = new Schema({
     },
 });
 
-module.exports = Stat = mongoose.model('stat', FriendSchema);
+module.exports = Stat = mongoose.model('stat', StatSchema);
