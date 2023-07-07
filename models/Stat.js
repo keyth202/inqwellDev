@@ -56,7 +56,7 @@ const StatSchema = new Schema({
             
         }
     ],
-    todayWorkoutScore:[
+    vitalityPoints:[
         {
             amount: {
                 type: Number,
@@ -72,7 +72,7 @@ const StatSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    totalWorkoutScore:{
+    totalVitalityPoints:{
         type: Number,
     },
 });

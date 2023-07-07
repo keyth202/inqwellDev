@@ -113,10 +113,10 @@ const ProfileSchema = new mongoose.Schema({
     default: Date.now
   },
   score:{
-    totalPoints:{
+    totalVitalityPoints:{
       type: Number
     },
-    dailyPoints:{
+    vitalityPoints:{
       type: Number
     }
   }   
