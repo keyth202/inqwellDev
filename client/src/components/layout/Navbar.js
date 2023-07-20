@@ -3,18 +3,23 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
-import {Sidebar } from 'primereact/sidebar';
-import { Button } from 'primereact/button';
-//import { NavbarDataGuest, NavbarDataAuth } from './NavbarData';
+//import {Sidebar } from 'primereact/sidebar';
+//import { Button } from 'primereact/button';
+import { SidebarData } from './sidebar/SidebarData';
+import './sidebar/sidebar.css';
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
+import { IconContext } from 'react-icons/lib';
 
 
 const Navbar = ({auth:{isAuthenticated}, logout}) => {
     //const {Navbar} = useState(false);
-  const [visibility, setVisibility] = useState(true);
-
-  const handleSidebar = () => {
-    setVisibility((prevState)=> !prevState);
+  //const [visibility, setVisibility] = useState(true);
+  const [sidebar, setSidebar] = useState(true);
+  const showSidebar = () => {
+    setSidebar(!sidebar);
   }
+
   const authLinks = (
     <ul>
      <li><Link to="dashboard"><i className='fas fa-user' /><span className='hide-sm'>Dashboard</span></Link></li>  
@@ -38,39 +43,53 @@ const Navbar = ({auth:{isAuthenticated}, logout}) => {
   );
 
   const authSidebar =(
-    <div>
-      <Button icon="pi pi-bars" onClick={handleSidebar} className="p-mr-2" />
-      <Sidebar visible={visibility} onHide={() => setVisibility(false)}   position='left' className="ui-sidebar-sm">
-          <ul className='sidebar-menu'>
-          <li><Link to="dashboard"><i className='fas fa-user' /><span className='hide-sm'>Dashboard</span></Link></li>  
-          <li><Link to="profiles">Profiles</Link></li>   
-          <li><Link to="workout">Workouts</Link></li>
-          <li><Link to="posts">Posts</Link></li>
-            <li>
-              <a onClick={logout} href='#!'>
-                <i className="fas fa-sign-out-alt"></i>{' '}
-                <span className="hide-sm">Logout</span>
-              </a>
-            </li>
-          </ul>
-    </Sidebar>
-    </div>
+    <>
+      <IconContext.Provider value={{ color: "undefined" }}>
+      <div className="sidebar">
+        <Link to="/" className="menu-bars">
+              <FaIcons.FaBars onClick={showSidebar} />
+        </Link>
+        </div>
+        <nav className={sidebar ? "side-menu active" : "side-menu"}>
+        <ul className="side-menu-items" onClick={showSidebar}>
+          <li className="sidebar-toggle">
+            <Link to="/" className="menu-bars">
+              <AiIcons.AiOutlineClose />
+            </Link>
+          </li>
+          {SidebarData.map((item, index) => {
+            return (
+              <li key={index} className={item.cName}>
+                <Link to={item.path}>
+                  {item.icon}
+                  <span>{item.title}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+      </IconContext.Provider>
+  </>
+ 
   );
 
   return (
     <div>
-      {isAuthenticated ? authSidebar : ''}
+      <Fragment>{isAuthenticated ? authSidebar : ''}</Fragment>
     <nav className="navbar bg-dark">
+       
       <h1>
+        {/*}
         <Link to="/">
-          <i className="fa-solid fa-square-z"></i> Zoe's Arena
-          </Link>
+          <i className="fa-solid fa-square-z"></i> 
+      </Link>*/}
       </h1>
-      <ul>
+      <ul>Zoe's Arena
      <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
        </ul>
     </nav>  
-    
+   
     </div>
     
   )
