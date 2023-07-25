@@ -6,7 +6,7 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import ErrorPage from './components/ErrorPage';
+import ErrorPage from './components/error/ErrorPage';
 import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -86,6 +86,10 @@ const App= ()  => {
             path="posts/:id"
             element={<PrivateRoute component={Post} />}
           />
+          <Route
+            path="*"
+            element={<NotFound />}
+            />
        </Routes>
       </Router >
     </Provider>

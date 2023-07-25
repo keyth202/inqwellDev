@@ -37,7 +37,7 @@ const Navbar = ({auth:{isAuthenticated}, logout}) => {
     <li><Link to="login">Login</Link></li>
   </ul>
   );
-  /*  
+
   const authSidebar =(
     <div>
       <Button icon="pi pi-bars" onClick={handleSidebar} className="p-mr-2" />
@@ -57,21 +57,21 @@ const Navbar = ({auth:{isAuthenticated}, logout}) => {
     </Sidebar>
     </div>
   );
-*/
+
   return (
     <div>
+      {isAuthenticated ? authSidebar : ''}
+    <nav className="navbar bg-dark">
       <h1>
         <Link to="/">
           <i className="fa-solid fa-square-z"></i> Zoe's Arena
           </Link>
       </h1>
-      {isAuthenticated ? <NavSideBar /> :
-          <nav className="navbar bg-dark">       
-            <ul>
-          <Fragment>{isAuthenticated ? '' : guestLinks}</Fragment>
-            </ul>
-          </nav>  
-    }
+      <ul>
+     <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+       </ul>
+    </nav>  
+    
     </div>
     
   )

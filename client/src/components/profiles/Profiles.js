@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import Spinner from '../layout/Spinner';
+import Spinner from '../layout/spinner/Spinner';
 import { getProfiles} from '../../actions/profile';
 import ProfilesItem from './ProfilesItem';
 import { connect } from 'react-redux';

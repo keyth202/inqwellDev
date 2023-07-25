@@ -1,24 +1,39 @@
 import React from 'react';
-import { Menubar } from 'primereact/menubar';
+import { Sidebar, MenuItem } from 'primereact/sidebar';
 
 function NavSideBar() {
 
     const navList =[
-        {label: 'Dashboard', icon: 'pi pi-fw pi-home'},
-        {label: 'Arena', icon: 'pi pi-fw pi-flag'},
-        {label: 'Trainers', icon: 'pi pi-fw pi-users'}
+        {
+            label: 'Dashboard', 
+            icon: 'pi pi-fw pi-home',
+            href:"/"
+        },
+        {
+            label: 'Profiles', 
+            icon: 'pi pi-fw pi-users',
+            href:"/profiles"
+        },
+        {
+            label: 'Arena', 
+            icon: 'pi pi-fw pi-flag',
+            href:"/arena"
+        },
+        {
+            label: 'Trainers', 
+            icon: 'pi pi-fw pi-users',
+            href:"/trainers"
+        }
     ]
 
   return (
-    <div>
-        <header>
-            <ul>
-                <Menubar
-                    model={navList} />
-
-            </ul>
-        </header>
-    </div>
+    <Sidebar>
+        
+        {navList.map((item) => (
+          <MenuItem key={item.label} {...item} />
+        ))}
+     
+    </Sidebar>
   )
 }
 

@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import Spinner from '../layout/Spinner';
+import Spinner from '../layout/spinner/Spinner';
 import {getProfileById} from '../../actions/profile';
 import { Link, useParams } from 'react-router-dom';
 import ProfileTop from './ProfileTop';
