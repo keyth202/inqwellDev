@@ -6,7 +6,7 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import ErrorPage from './components/error/ErrorPage';
+import NotFound from './components/error/NotFound';
 import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -24,7 +24,9 @@ import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
-import './App.css';
+import { ColorModeContext, useMode } from './themes/theme';
+import {CssBaseline, ThemeProvider} from "@mui/material"
+import './App2.css';
 
 
 
@@ -45,9 +47,11 @@ const App= ()  => {
     
   }, []);
   
- 
+ const [theme, colorMode ] =useMode();
+
   
   return (
+    <ColorModeContext.Provider value ={colorMode} >
     <Provider store ={store}>
       <Router>
         <Navbar />
@@ -93,6 +97,7 @@ const App= ()  => {
        </Routes>
       </Router >
     </Provider>
+    </ColorModeContext.Provider>
   );
 }
 

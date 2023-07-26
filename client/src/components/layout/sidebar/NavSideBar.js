@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sidebar, MenuItem } from 'primereact/sidebar';
+import { Sidebar } from 'primereact/sidebar';
 
 function NavSideBar() {
 
@@ -28,11 +28,11 @@ function NavSideBar() {
 
   return (
     <Sidebar>
-        
+        <ul>
         {navList.map((item) => (
-          <MenuItem key={item.label} {...item} />
+          <li key={item.label} {...item} />
         ))}
-     
+        </ul>
     </Sidebar>
   )
 }
