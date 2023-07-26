@@ -1,85 +1,64 @@
-.sidebar1 {
-    height: 100%; 
-    width : 100px;
-    background-color: rgb(44, 44, 44);
+.sidebar-container{
+    display:flex;
 }
-
-
-
-/* Navbar CSS */
-.sidebar {
-    background-color: #ffffff;
-    height: 80px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.menu-bars {
-margin-left: 2rem;
-font-size: 2rem;
-background: none;
-color: #000;
-}
-.menu-bars:hover{
-    background-color: #fff;
-}
-.side-menu {
-background-color: #ffffff;
-width: 250px;
-height: 100vh;
-display: flex;
-justify-content: center;
-position: fixed;
-top: 0;
-left: -100%;
-transition: 850ms;
-}
-
-.side-menu.active {
-left: 0;
-transition: 450ms;
-}
-
-.side-text {
-display: flex;
-justify-content: flex-start;
-align-items: center;
-padding: 8px 0px 8px 16px;
-list-style: none;
-height: 60px;
-}
-
-.side-text a {
-text-decoration: none;
-color: #151414;
-font-size: 18px;
-width: 95%;
-height: 100%;
-display: flex;
-align-items: center;
-padding: 0 16px;
-border-radius: 4px;
-}
-
-.side-text a:hover {
-background-color: #000000;
-color: #fff;
-}
-
-.side-menu-items {
-width: 100%;
-}
-
-.sidebar-toggle {
-background-color: #ffffff;
-width: 100%;
-height: 80px;
-display: flex;
-justify-content: flex-start;
-align-items: center;
-}
-
-span {
-margin-left: 16px;
-}
+  /* Sidebar styles */
+  .sidebar {
+    height: 100%;
+    width: 250px;
+    background-color: #111;
+    transition: left 0.3s;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .sidebar li:hover {
+    background-color: #444;
+  }
+  
+  /* Content styles */
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  /* Hamburger menu icon */
+  .menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    display: none;
+  }
+  
+  /* Media query for responsiveness */
+  @media (max-width: 768px) {
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+    }
+  
+    .open {
+      left: 0;
+    }
+  
+    .content {
+      margin-left: 0;
+    }
+  
+    .menu-icon {
+      display: block;
+    }
+  }
+  
