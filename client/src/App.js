@@ -56,12 +56,15 @@ const App= ()  => {
     <ColorModeContext.Provider value ={colorMode} >
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        
         <Provider store ={store}>
-          <Router>
-            <div className='app'>
-              <Navbar />
+       
+             
+          <Router> <div className='app'>
+            <AuthSidebar />
               <main className='content'>
-              {/*<Topbar />*/}
+                <Topbar />
+              {/* <Navbar />*/}
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="register" element={<Register />} />
@@ -102,9 +105,11 @@ const App= ()  => {
                 />
           </Routes>
           </main>
-          </div>
+        </div>
           </Router >
+           
         </Provider>
+         
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

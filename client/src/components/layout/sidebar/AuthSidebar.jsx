@@ -1,13 +1,23 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { Sidebar, Menu, MenuItem} from 'react-pro-sidebar';
-//import 'react-pro-sidebar/dist/css/styles.css';
-import { Box, IconButton, Typography, useTheme } from '@mui/material';
+//import 'react-pro-sidebar/dist/styles';
+import { 
+  Box, 
+  IconButton, 
+  Typography, 
+  useTheme, 
+  Drawer, 
+  List, 
+  Stack, 
+  Toolbar } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { tokens } from '../../../themes/theme';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import showcase from '../../../img/showcase2.jpg';
 
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -17,7 +27,8 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
     <MenuItem
       active={selected === title}
       style={{
-        color: colors.grey[100],
+        color: colors.tealAccent[100],
+        fontSize: 16
       }}
       onClick={() => setSelected(title)}
       icon={icon}
@@ -27,7 +38,11 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
     </MenuItem>
   );
 };
-
+const sizeConfigs = {
+  sidebar: {
+    width: "300px"
+  }
+};
 const AuthSidebar = (/*{
   profile: {
     user: { name, avatar }
@@ -60,8 +75,45 @@ const AuthSidebar = (/*{
       }}
     >
       {/*Menu Items */}
-      <Sidebar collapsed={isCollapsed}>
-        <Menu>
+      <Drawer
+      variant='permanent'
+      collapsed={isCollapsed}
+      sx={{
+        width: sizeConfigs.sidebar.width,
+        flexShrink: 0,
+        "& .MuiDrawer-paper": {
+          width: sizeConfigs.sidebar.width,
+          boxSizing: "border-box",
+          borderRight: "0px",
+        }}}
+        >
+      {/*<Sidebar collapsed={isCollapsed}>*/}
+        <Menu iconShape="square">
+          {/* Logo and Menu 3 lines */}
+          <MenuItem
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+            style={{
+              margin: "10px 0 20px 0",
+              color: colors.grey[900],
+            }}
+            >
+             {!isCollapsed && (
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                ml="15px"
+              >
+                <Typography variant="h3" color={colors.grey[900]}>
+                  Zoe's Arena
+                </Typography>
+                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                  <MenuOutlinedIcon />
+                </IconButton>
+              </Box>
+            )} 
+            </MenuItem>
       { !isCollapsed && (
         <Box mb="25px">
           <Box 
@@ -71,12 +123,12 @@ const AuthSidebar = (/*{
             >
               <img
                 alt="profile-user"
-                width = "100px"
+                width = "50px"
                 height ="100px"
-                src={"avatar"}
+                src={showcase}
                 style={{
                   cursor:"pointer",
-                  borderRadius:"50px"
+                  borderRadius:"50%"
                 }} />
           </Box>
           <Box textAlign={"center"}>
@@ -86,6 +138,9 @@ const AuthSidebar = (/*{
             >
               {"Name"}
             </Typography>
+            <Typography variant="h5" color={colors.greenAccent[500]}>
+                  {"Athlete"}
+              </Typography>
           </Box>
         </Box>
       )}
@@ -121,10 +176,32 @@ const AuthSidebar = (/*{
           
         </Box>
         </Menu>
-      </Sidebar>
+      {/*</Sidebar>*/}
+      </Drawer>
     </Box>
   )
 }
+
+const AuthSideBar2 = () => {
+  return (
+    <Drawer
+      variant='permanent'
+      sx={{
+        width: sizeConfigs.sidebar.width,
+        flexShrink: 0,
+        "& .MuiDrawer-paper": {
+          width: sizeConfigs.sidebar.width,
+          boxSizing: "border-box",
+          borderRight: "0px",
+          //backgroundColor: colorConfigs.sidebar.bg,
+          //color: colorConfigs.sidebar.color
+      }}}
+      >
+
+    </Drawer>
+  )
+}
+
 AuthSidebar.propTypes = {
   profile: PropTypes.object
 }
