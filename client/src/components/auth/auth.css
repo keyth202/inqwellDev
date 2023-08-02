@@ -1,4 +1,15 @@
-
+/*
+body{
+    
+}
+*/
+.authBody{
+    background: url('../../img/showcase2.jpg') no-repeat center center/cover; 
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    padding-top: 20px;
+}
 .loginBody {
     display: flex;
     justify-content: center;
@@ -12,6 +23,7 @@
     background: #1c1c1c;
     border-radius: 50px 5px;
     overflow: hidden;
+    opacity: 90%;
   }
   .loginBox::before{
     content:'';

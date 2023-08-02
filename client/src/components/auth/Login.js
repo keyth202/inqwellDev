@@ -54,9 +54,11 @@ const Login = ({login, isAuthenticated}) => {
       </p>
     </section>
   */}
-  <div className='container'>
+  <header className='authBody'>
      <h1>Welcome to Zoe's Arena</h1>
-  </div>
+     <h3>
+          Create a fitness profile, wager points versus friends and get help from trainers
+        </h3>
    
     <div className='loginBody'>
       
@@ -96,7 +98,7 @@ const Login = ({login, isAuthenticated}) => {
        
       </div>
     </div>
-
+  </header>
     </Fragment>
     )
 }
