@@ -61,7 +61,7 @@ const App= ()  => {
        
              
           <Router> <div className='app'>
-            <AuthSidebar />
+            {/*<AuthSidebar /> */}
               <main className='content'>
                 <Topbar />
               {/* <Navbar />*/}

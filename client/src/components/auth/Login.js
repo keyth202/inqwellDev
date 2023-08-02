@@ -3,6 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 import {connect} from "react-redux";
 import { login } from "../../actions/auth";
 import PropTypes from 'prop-types';
+import './auth.css';
 
 const Login = ({login, isAuthenticated}) => {
     const [formData, setFormData] =useState({
@@ -25,6 +26,7 @@ const Login = ({login, isAuthenticated}) => {
     }
   return (
     <Fragment >
+    {/*
     <section className="container">
       <h1 className="large text-primary">Sign Into Your Account</h1>
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
@@ -51,6 +53,50 @@ const Login = ({login, isAuthenticated}) => {
         Don't have an account? <Link to="/register">Sign Up</Link>
       </p>
     </section>
+  */}
+  <div className='container'>
+     <h1>Welcome to Zoe's Arena</h1>
+  </div>
+   
+    <div className='loginBody'>
+      
+      <div className='loginBox'>
+       
+          <form className="formBox" onSubmit={e => onSubmit(e)}>
+            <h2>Sign In</h2>
+                
+              <div className='inputBox'> 
+                <input 
+                  type="email" 
+                  name="email" 
+                  value={email} 
+                  onChange={e => onChange(e)} 
+                  required
+                />
+                <span>Email Address</span>
+                <i></i>
+              </div>
+              <div className='inputBox'>
+                <input
+                  type="password"
+                  name="password"
+                  minLength="6"
+                  value={password}
+                  onChange={e => onChange(e)}
+                  required
+                />
+                <span>Password</span>
+                <i></i>
+              </div>
+              <input type="submit" className="subForm" value="Login" />
+              <div className='links'>
+                <Link to="/register">Don't have an account, sign up!</Link>
+              </div>
+          </form>
+       
+      </div>
+    </div>
+
     </Fragment>
     )
 }
