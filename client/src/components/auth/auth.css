@@ -34,7 +34,7 @@ body{
     height: 450px;
     background: linear-gradient(60deg, transparent, #45f3ff, #45f3ff);
     transform-origin: bottom right;
-    animation: animate 6s linear infinite;
+    animation: animate 10s linear infinite;
   }
   .loginBox::after{
     content:'';
@@ -45,8 +45,8 @@ body{
     height: 450px;
     background: linear-gradient(60deg, transparent, #cfd5fa, #cfd5fa);
     transform-origin: bottom right;
-    animation: animate 6s linear infinite;
-    animation-delay: -3s;
+    animation: animate 10s linear infinite;
+    animation-delay: -5s;
   }
   @keyframes animate {
     0% {
