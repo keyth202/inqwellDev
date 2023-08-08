@@ -158,4 +158,36 @@ body{
     text-decoration: underline 2px;
     text-underline-offset: 5px;
   }
+  .registerBox {
+    position: relative;
+    width: 370px;
+    height: 600px; 
+    background: #1c1c1c;
+    border-radius: 50px 5px;
+    overflow: hidden;
+    opacity: 90%;
+  }
+  .registerBox::before{
+    content:'';
+    position:absolute; 
+    top: -50%;
+    left: -50%;
+    width: 370px;
+    height: 600px;
+    background: linear-gradient(60deg, transparent, #45f3ff, #45f3ff);
+    transform-origin: bottom right;
+    animation: animate 10s linear infinite;
+  }
+  .registerBox::after{
+    content:'';
+    position:absolute; 
+    top: -50%;
+    left: -50%;
+    width: 370px;
+    height: 600px;
+    background: linear-gradient(60deg, transparent, #cfd5fa, #cfd5fa);
+    transform-origin: bottom right;
+    animation: animate 10s linear infinite;
+    animation-delay: -5s;
+  }
   
