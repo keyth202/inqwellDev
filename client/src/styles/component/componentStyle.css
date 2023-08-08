@@ -1,0 +1,13 @@
+.flexBox {
+    display: flex;
+    justify-content: space-between;
+}
+.innerBox{
+    width: 30%;
+    padding: 2px; 
+    background-color: rgb(56, 55, 55);
+    margin: 5px;
+    border: 2px outset #999;
+    border-radius: 8px;
+
+}

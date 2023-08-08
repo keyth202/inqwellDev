@@ -22,3 +22,10 @@ export const DELETE_POST = 'DELETE_POST';
 export const ADD_POST = 'ADD_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const GET_STATS='GET_STATS';
+export const UPDATE_STATS = 'UPDATE_STATS';
+export const DELETE_STATS = 'DELETE_STATS';
+export const GET_WORKOUTS = 'GET_WORKOUTS';
+export const UPDATE_WORKOUTS = 'UPDATE_WORKOUTS';
+export const DELETE_WORKOUTS = 'DELETE_WORKOUTS';
+
