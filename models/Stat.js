@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const StatSchema = new Schema({
+const StatSchema = new mongoose.Schema({
     user:{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:'users'
     },
     weight:[
@@ -58,7 +57,7 @@ const StatSchema = new Schema({
     ],
     vitalityPoints:[
         {
-            amount: {
+            points: {
                 type: Number,
             },
             date:{

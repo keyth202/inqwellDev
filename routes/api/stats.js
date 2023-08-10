@@ -11,7 +11,6 @@ router.get('/',auth, async (req, res) => {
     try{
         
         
-        
         res.json({msg:'Got to tools'});
         
     }catch(err){
@@ -27,31 +26,29 @@ router.post('/points', [auth,[
 
 ]], async (req,res)=>{
 
-    const user = await User.findById(req.user.id).select('-password');
-    const stat = await Stat.findById(req.params.id);
-
     const errors = validationResult(req);
    
     if(!errors.isEmpty()){
         return res.status(400).json({ errors: errors.array()});
     }
-   
-   
-   
+   console.log("Points:",req.body.points);
     try{
-        const{
-            vitalityPoints
-        } =req.body;
-        
-        const newPoints={
-            vitalityPoints
+        /*const profile = await Stat.findOne({user: req.user.id});
+
+        if (!profile) {
+            return res.status(404).json({ errors: [{ msg: 'Profile not found' }] });
         }
-        //console.warn("We Got here");
-        const stats = await Stat.findOne({user: req.user.id});
-        //unshift pushes things to the beginning of the array so current education show up first
-        profile.education.unshift(newEdu);
-        await profile.save();
-        res.json(profile);
+        */
+        const { points} = req.body;
+        const newPoints = new Stat({
+            vitalityPoints:{
+                points:points
+            }});
+        console.log("Shifted Points:", newPoints);
+        const stat = await newPoints.save();
+        //profile.vitalityPoints.unshift(newPoints);
+        //await profile.save();
+        res.json(stat);
     }catch(err){
         console.error(err.message);
         res.status(500).send("Server Error");
