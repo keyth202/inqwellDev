@@ -55,4 +55,31 @@ router.post('/points', [auth,[
     }
 });
 
+router.post('/weight', [auth,[ 
+    body('weight', 'Points are required' ).not().isEmpty(),
+
+]], async (req,res)=>{
+
+    const errors = validationResult(req);
+   
+    if(!errors.isEmpty()){
+        return res.status(400).json({ errors: errors.array()});
+    }
+    try{
+
+        const { weight} = req.body;
+        const newStat= new Stat({
+            weight:{
+                amount:weight
+            }});
+        console.log("Shifted Points:", newStat);
+        const stat = await newStat.save();
+
+        res.json(stat);
+    }catch(err){
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+});
+
 module.exports = router;
