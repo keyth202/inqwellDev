@@ -25,6 +25,9 @@ const StatSchema = new mongoose.Schema({
             reps: {
                 type: Number,
             },
+            time: {
+                type: Number,
+            },
             date : {
                 type: Date,
                 default: Date.now
