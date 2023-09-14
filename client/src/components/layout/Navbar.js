@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 import {Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
-import NavSideBar from './sidebar/NavSideBar';
+//import NavSideBar from './sidebar/NavSideBar';
 //import { NavbarDataGuest, NavbarDataAuth } from './NavbarData';
 
 
@@ -79,7 +79,7 @@ const Navbar = ({auth:{isAuthenticated}, logout}) => {
           <i className="fa-solid fa-square-z"></i> 
       </Link>*/}
       </h1>
-      {isAuthenticated ? <NavSideBar /> :
+      {isAuthenticated ? "" :
           <nav className="navbar bg-dark">       
             <ul>
           <Fragment>{isAuthenticated ? '' : guestLinks}</Fragment>

@@ -88,7 +88,7 @@ const App= ()  => {
           />
           <Route
             path="*"
-            element={<NotFound />}
+            element={<ErrorPage />}
             />
        </Routes>
       </Router >
