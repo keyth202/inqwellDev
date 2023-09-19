@@ -33,12 +33,7 @@ router.post('/points', [auth,[
     }
    console.log("Points:",req.body.points);
     try{
-        /*const profile = await Stat.findOne({user: req.user.id});
 
-        if (!profile) {
-            return res.status(404).json({ errors: [{ msg: 'Profile not found' }] });
-        }
-        */
         const { points} = req.body;
         const newPoints = new Stat({
             vitalityPoints:{
@@ -46,8 +41,7 @@ router.post('/points', [auth,[
             }});
         console.log("Shifted Points:", newPoints);
         const stat = await newPoints.save();
-        //profile.vitalityPoints.unshift(newPoints);
-        //await profile.save();
+ 
         res.json(stat);
     }catch(err){
         console.error(err.message);
@@ -81,5 +75,48 @@ router.post('/weight', [auth,[
         res.status(500).send("Server Error");
     }
 });
+
+router.post('/workout', [auth,[ 
+    body('workout', 'Workout is required' ).not().isEmpty(),
+
+]], async (req,res)=>{
+
+    const errors = validationResult(req);
+   
+    if(!errors.isEmpty()){
+        return res.status(400).json({ errors: errors.array()});
+    }
+   console.log("Workout:",req.body.workout);
+    try{
+
+        const { workout} = req.body;
+        const newWorkout = new Stat({
+            workout:{
+                name:workout.name,
+                reps:workout.reps,
+                time:workout.time || 0,
+            }});
+        console.log("Shifted Workout:", newWorkout);
+        const stat = await newWorkout.save();
+     
+        res.json(stat);
+
+    }catch(err){
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+});
+router.get('/workouts', auth, async (req, res) => {
+    try {
+        const workouts = await Stat.workout.find().sort({date:-1});
+        res.json(workouts);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+     
+    }
+
+});
+
 
 module.exports = router;

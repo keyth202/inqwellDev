@@ -20,7 +20,7 @@ const StatSchema = new mongoose.Schema({
     workout:[       
         {
             name: {
-            type: String,
+                type: String,
             },
             reps: {
                 type: Number,
