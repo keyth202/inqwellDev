@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const IntegrationSchema = new Schema({
     user:{
         type: Schema.Types.ObjectId,
-        ref:'users'
+        ref:'user'
     },
     google:[
         {

@@ -9,19 +9,15 @@ const User = require('../../models/User');
 router.get('/',auth, async (req, res) => {
 
     try{
-        
-        
-        res.json({msg:'Got to tools'});
-        
+        const stats = await Stat.findOne({user:req._id});
+        res.json(stats);       
     }catch(err){
         console.error(err.message);
         res.status(500).send('Server Error');
-
-    }
-    
+    }  
 });
 
-router.post('/points', [auth,[ 
+router.put('/points', [auth,[ 
     body('points', 'Points are required' ).not().isEmpty(),
 
 ]], async (req,res)=>{
@@ -35,12 +31,14 @@ router.post('/points', [auth,[
     try{
 
         const { points} = req.body;
-        const newPoints = new Stat({
-            vitalityPoints:{
-                points:points
-            }});
+        const newPoints = {       
+            points
+        };
+        
         console.log("Shifted Points:", newPoints);
-        const stat = await newPoints.save();
+        const stat = await Stat.findOne({user:req._id});
+        stat.vitalityPoints.unshift(newPoints);
+        await stat.save();
  
         res.json(stat);
     }catch(err){
@@ -49,8 +47,8 @@ router.post('/points', [auth,[
     }
 });
 
-router.post('/weight', [auth,[ 
-    body('weight', 'Points are required' ).not().isEmpty(),
+router.put('/weight', [auth,[ 
+    body('weight', 'Weight is required' ).not().isEmpty(),
 
 ]], async (req,res)=>{
 
@@ -62,21 +60,23 @@ router.post('/weight', [auth,[
     try{
 
         const { weight} = req.body;
-        const newStat= new Stat({
-            weight:{
-                amount:weight
-            }});
+        const newStat= {
+            amount: weight
+        };
         console.log("Shifted Points:", newStat);
-        const stat = await newStat.save();
-
+        const stat = await Stat.findOne({user:req._id});
+        stat.weight.unshift(newStat);
+        await stat.save();
+    
         res.json(stat);
+
     }catch(err){
         console.error(err.message);
         res.status(500).send("Server Error");
     }
 });
 
-router.post('/workout', [auth,[ 
+router.put('/workout', [auth,[ 
     body('workout', 'Workout is required' ).not().isEmpty(),
 
 ]], async (req,res)=>{
@@ -90,15 +90,15 @@ router.post('/workout', [auth,[
     try{
 
         const { workout} = req.body;
-        const newWorkout = new Stat({
-            workout:{
+        const newWorkout = {
                 name:workout.name,
                 reps:workout.reps,
                 time:workout.time || 0,
-            }});
+            };
         console.log("Shifted Workout:", newWorkout);
-        const stat = await newWorkout.save();
-     
+        const stat = await Stat.findOne({user:req._id});
+        stat.workout.unshift(newWorkout);
+        await stat.save();
         res.json(stat);
 
     }catch(err){
@@ -108,7 +108,7 @@ router.post('/workout', [auth,[
 });
 router.get('/workouts', auth, async (req, res) => {
     try {
-        const workouts = await Stat.workout.find().sort({date:-1});
+        const workouts = await Stat.workout.find({user:req._id}).sort({date:-1});
         res.json(workouts);
     } catch (err) {
         console.error(err.message);

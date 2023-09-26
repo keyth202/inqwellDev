@@ -4,19 +4,13 @@ const Schema = mongoose.Schema;
 const FriendSchema = new Schema({
     user:{
         type: Schema.Types.ObjectId,
-        ref:'users'
+        ref:'user'
     },
     friends:[
         {
             user:{
                 type:Schema.Types.ObjectId,
-                ref:'users'
-            },
-            name:{
-                type: String
-            },
-            avatar:{
-                type: String
+                ref:'user'
             },
             date :{
                 type: Date,
