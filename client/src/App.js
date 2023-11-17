@@ -3,13 +3,14 @@ import React, {Fragment, useEffect } from 'react';
 //import {createBrowserRouter,RouterProvider,Outlet} from 'react-router-dom';
 import{ BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
-import Topbar from  './components/layout/topbar/Topbar'
+////import Topbar from  './components/layout/topbar/Topbar'
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import NotFound from './components/error/NotFound';
 import Alert from './components/layout/Alert';
-import Dashboard from './components/dashboard/Dashboard';
+import Dashboard from './pages/Dashboard';
+//import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
 import CreateProfile from './components/profile-forms/CreateProfile';
 import EditProfile from './components/profile-forms/EditProfile';
@@ -53,18 +54,18 @@ const App= ()  => {
 
   
   return (
-    <ColorModeContext.Provider value ={colorMode} >
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        
+        <div> 
+          {/*<ColorModeContext.Provider value ={colorMode} >
+                <ThemeProvider theme={theme}>
+            <CssBaseline />*/}
         <Provider store ={store}>
        
              
           <Router> <div className='app'>
             {/*<AuthSidebar /> */}
               <main className='content'>
-                <Topbar />
-              {/* <Navbar />*/}
+               {/*  <Topbar />*/} 
+              <Navbar />
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="register" element={<Register />} />
@@ -109,9 +110,10 @@ const App= ()  => {
           </Router >
            
         </Provider>
-         
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+             {/*}/ThemeProvider>
+              </ColorModeContext.Provider>*/}
+         </div>
+ 
   );
 }
 
